@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  webserver:
+    image: nginx:alpine
+    container_name: production-web-app
+    restart: unless-stopped
+    ports:
+      - "80:80"
+
+  zabbix-agent:
+    image: zabbix/zabbix-agent2:alpine-6.4-latest
+    container_name: zabbix-agent
+    restart: unless-stopped
+    environment:
+      ZBX_SERVER_HOST: "192.168.10.20"
+      ZBX_HOSTNAME: "ubuntu-node01"
